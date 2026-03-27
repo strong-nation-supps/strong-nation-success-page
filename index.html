@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Verified</title>
+
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .checkmark {
+      font-size: 70px;
+      color: #22c55e;
+      animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); }
+      80% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+
+    p {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="checkmark">✔</div>
+    <h1>Your Product is Authentic</h1>
+    <p>Redirecting you...</p>
+  </div>
+
+  <script>
+    // 🎉 Confetti Boom Effect
+    confetti({
+      particleCount: 200,
+      spread: 100,
+      origin: { y: 0.6 }
+    });
+
+    // 🔍 Get product from URL
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get("product");
+
+    // 🔗 Product Redirect Mapping
+    let redirectURL = "https://strongnation.in";
+
+    if (product === "smg") {
+      redirectURL = "https://strongnation.in/products/smg";
+    } 
+    else if (product === "eaa") {
+      redirectURL = "https://strongnation.in/products/eaa-shredz";
+    } 
+    else if (product === "pump") {
+      redirectURL = "https://strongnation.in/products/pump-hunter";
+    } 
+    else if (product === "fatburn") {
+      redirectURL = "https://strongnation.in/products/trophy-fat-burner";
+    }
+
+    // ⏳ Auto Redirect after 5 seconds
+    setTimeout(() => {
+      window.location.href = redirectURL;
+    }, 5000);
+  </script>
+
+</body>
+</html>
