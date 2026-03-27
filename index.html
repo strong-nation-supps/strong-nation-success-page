@@ -5,43 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product Verified</title>
 
+  <!-- 🎉 Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
+      background: black;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Poster image (no stretch) */
+    .poster {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* Bottom text */
+    .text {
+      position: absolute;
+      bottom: 25px;
+      width: 100%;
       text-align: center;
-    }
-
-    .container {
-      padding: 20px;
-    }
-
-    .checkmark {
-      font-size: 70px;
-      color: #22c55e;
-      animation: pop 0.6s ease;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0); }
-      80% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-
-    h1 {
-      font-size: 22px;
-      margin-top: 20px;
-    }
-
-    p {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
       opacity: 0.7;
     }
   </style>
@@ -49,27 +44,50 @@
 
 <body>
 
-  <div class="container">
-    <div class="checkmark">✔</div>
-    <h1>Your Product is Authentic</h1>
-    <p>Redirecting you...</p>
-  </div>
+  <!-- 🔥 YOUR ORIGINAL POSTER -->
+  <img 
+    class="poster" 
+    src="https://cdn.shopify.com/s/files/1/0651/8492/3725/files/WhatsApp_Image_2026-03-27_at_4.25.49_PM.jpg?v=1774609958" 
+    alt="Authentic Poster"
+  >
+
+  <div class="text">Redirecting to product page...</div>
 
   <script>
-    // 🎉 Confetti
-    confetti({
-      particleCount: 200,
-      spread: 100,
-      origin: { y: 0.6 }
-    });
+    // 🎆 Cracker Confetti Effect
+    function fireCrackers() {
+      var duration = 1500;
+      var end = Date.now() + duration;
 
-    // 🔍 Get product from URL
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+
+    fireCrackers();
+
+    // 🔍 Product detect
     const params = new URLSearchParams(window.location.search);
     const product = params.get("product");
 
     let redirectURL = "https://strongnation.in";
 
-    // 🔗 ALL PRODUCT MAPPING
     if (product === "smg") {
       redirectURL = "https://strongnation.in/products/strength-muscle-gainz";
     } 
@@ -101,10 +119,10 @@
       redirectURL = "https://strongnation.in/products/liver-kidney-strength";
     }
 
-    // ⏳ Redirect after 5 sec
+    // ⏳ Redirect after 3 sec
     setTimeout(() => {
       window.location.href = redirectURL;
-    }, 5000);
+    }, 3000);
   </script>
 
 </body>
