@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product Verified</title>
 
+  <!-- 🔥 META PIXEL (TOP में होना चाहिए) -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '871203202641429');
+  fbq('track', 'PageView');
+  </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=871203202641429&ev=PageView&noscript=1"/>
+  </noscript>
+
   <!-- 🎉 Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -15,17 +35,15 @@
       background: black;
     }
 
-    /* Full screen image (auto fit all phones) */
     .bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* 🔥 KEY LINE */
+      object-fit: cover;
     }
 
-    /* Bottom text */
     .text {
       position: absolute;
       bottom: 25px;
@@ -52,7 +70,7 @@
   <div class="text">Redirecting to product page...</div>
 
   <script>
-    // 🎆 Cracker Confetti Effect
+    // 🎆 Confetti Effect
     function fireCrackers() {
       var duration = 1500;
       var end = Date.now() + duration;
@@ -115,6 +133,13 @@
     } 
     else if (product === "liver") {
       redirectURL = "https://strongnation.in/products/liver-kidney-strength";
+    }
+
+    // 🔥 META PRODUCT TRACKING (MOST IMPORTANT)
+    if (product) {
+      fbq('track', 'ViewContent', {
+        content_name: product
+      });
     }
 
     // ⏳ Redirect after 3 sec
